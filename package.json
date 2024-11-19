@@ -8,7 +8,7 @@
     "dev": "next dev"
   },
   "engines": {
-    "node": "22.x.x"
+    "node": "20.x.x"
   },
   "dependencies": {
     "next": "15.0.1",
