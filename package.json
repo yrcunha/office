@@ -2,6 +2,11 @@
   "name": "office",
   "version": "1.0.0",
   "description": "",
+  "author": {
+    "name": "Yuri Guimarães Rodrigues",
+    "email": "yrcunha@gmail.com",
+    "url": ""
+  },
   "type": "module",
   "private": true,
   "scripts": {
