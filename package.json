@@ -11,8 +11,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "lint:check": "prettier --check ./src",
-    "lint:fix": "prettier --write ./src"
+    "lint:check": "prettier --check .",
+    "lint:fix": "prettier --write ."
   },
   "engines": {
     "node": "20.x.x"
