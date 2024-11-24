@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { HttpCodes } from "../../../../commons/http/http";
-import { query } from "../../../../services/datasource/database";
+import { query } from "@/services/datasource/database";
+import { HttpCodes } from "@/commons/http/http";
 
 export default async function status(
   _request: NextApiRequest,

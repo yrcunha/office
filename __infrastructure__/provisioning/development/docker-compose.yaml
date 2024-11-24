@@ -3,6 +3,6 @@ services:
     container_name: "office"
     image: "postgres:17.2-alpine3.20"
     env_file:
-      - "../.env.development"
+      - "../../../.env.development"
     ports:
       - "5432:5432"
