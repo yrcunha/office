@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { HttpCodes } from "@/commons/http/http";
 import { query } from "@/services/datasource/database";
-import * as process from "node:process";
 
 export default async function status(
   _: NextApiRequest,
