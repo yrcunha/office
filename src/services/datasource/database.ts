@@ -11,8 +11,7 @@ export async function query(command: string, params: string[] = []) {
     await client.connect();
     return await client.query(command, params);
   } catch (error) {
-    console.error(`Erro na requisição do banco de dados: ${error}`);
-    throw new Error("Erro de banco");
+    console.error(`Erro na requisição do banco de dados:`, error);
   } finally {
     await client.end();
   }
