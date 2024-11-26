@@ -1,31 +1,43 @@
 /**
- * @type {import('node-pg-migrate').ColumnDefinitions | undefined}
- */
-exports.shorthands = undefined;
-
-/**
  * @param pgm {import('node-pg-migrate').MigrationBuilder}
- * @param run {() => void | undefined}
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.createTable("users", {
-    id: {
-      type: "bigint",
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    email: {
-      type: "text",
-      notNull: true,
-      unique: true,
-    },
+  pgm.createSequence("user_id_seq", {
+    type: "bigint",
+    minvalue: 1,
+    start: 1,
+    increment: 1,
+    cache: 1,
+    ifNotExists: true,
   });
-};
 
-/**
- * @param pgm {import('node-pg-migrate').MigrationBuilder}
- * @param run {() => void | undefined}
- * @returns {Promise<void> | void}
- */
-exports.down = (pgm) => {};
+  pgm.createTable(
+    "users",
+    {
+      id: {
+        type: "bigint",
+        primaryKey: true,
+        default: pgm.func("nextval('user_id_seq'::regclass)"),
+      },
+      email: {
+        type: "text",
+        notNull: true,
+        unique: true,
+      },
+      phone: {
+        type: "text",
+        notNull: true,
+        unique: true,
+      },
+      created_at: {
+        type: "timestamptz",
+        notNull: true,
+        default: pgm.func("now()"),
+      },
+    },
+    {
+      ifNotExists: true,
+    },
+  );
+};

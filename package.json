@@ -16,8 +16,8 @@
     "services:down": "docker compose -f __infrastructure__/provisioning/development/docker-compose.yaml down",
     "migrate:create": "node-pg-migrate -m __infrastructure__/migrations create",
     "migrate:up": "node-pg-migrate -m __infrastructure__/migrations --envPath .env.development up",
-    "test": "jest",
-    "test:watch": "jest --watchAll",
+    "test": "DOTENV_CONFIG_PATH=.env.development jest",
+    "test:watch": "DOTENV_CONFIG_PATH=.env.development jest --watchAll",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write ."
   },
@@ -44,9 +44,12 @@
     "typescript": "5.6.3"
   },
   "jest": {
-    "preset": "ts-jest",
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "preset": "ts-jest/presets/default-esm",
     "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
+      "^@/(.*)$": "<rootDirectory>/src/$1"
     }
   }
 }
