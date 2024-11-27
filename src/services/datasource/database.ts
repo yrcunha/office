@@ -1,6 +1,18 @@
 import { Client } from "pg";
 
 export async function query(command: string, params: string[] = []) {
+  let client: Client;
+  try {
+    client = await getDatabaseClient();
+    return await client.query(command, params);
+  } catch (error) {
+    console.error(`Erro na requisição do banco de dados:`, error);
+  } finally {
+    await client!.end();
+  }
+}
+
+export async function getDatabaseClient() {
   const client = new Client({
     host: process.env.POSTGRES_HOST,
     user: process.env.POSTGRES_USER,
@@ -8,12 +20,6 @@ export async function query(command: string, params: string[] = []) {
     database: process.env.POSTGRES_DB,
     ssl: process.env.NODE_ENV !== "development",
   });
-  try {
-    await client.connect();
-    return await client.query(command, params);
-  } catch (error) {
-    console.error(`Erro na requisição do banco de dados:`, error);
-  } finally {
-    await client.end();
-  }
+  await client.connect();
+  return client;
 }
