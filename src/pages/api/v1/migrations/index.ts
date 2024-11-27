@@ -29,7 +29,7 @@ export default async function migrations(
     const defaultMigrationOptions: RunnerOption = {
       databaseUrl: process.env.DATABASE_URL!,
       dryRun: true,
-      dir: join(process.cwd(), "__infrastructure__", "migrations"),
+      dir: join(process.cwd(), "src", "services", "datasource", "migrations"),
       direction: "up",
       verbose: true,
       migrationsTable: "pgmigrations",
