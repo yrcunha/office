@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { exec } = require("node:child_process");
+import { exec } from "node:child_process";
 
 function checkPostgres() {
   exec(
