@@ -5,6 +5,6 @@ on: pull_request
 jobs:
   jest:
     name: Jest
-    uses: ".github/workflows/setup.yml"
+    uses: "./.github/workflows/setup.yaml"
     steps:
       - run: npm test
