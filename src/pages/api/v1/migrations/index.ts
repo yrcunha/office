@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { runner } from "node-pg-migrate";
 import { join } from "node:path";
 import type { RunnerOption } from "node-pg-migrate/types";
-import * as process from "node:process";
 import { getDatabaseClient } from "@/services/datasource/database";
 import { ErrorForHttpMethodNotAllowed } from "@/commons/errors/error-for-http-method-not-allowed";
 import { Client } from "pg";
