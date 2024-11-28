@@ -7,6 +7,7 @@ import { getDatabaseClient } from "@/services/datasource/database";
 import { ErrorForHttpMethodNotAllowed } from "@/commons/errors/error-for-http-method-not-allowed";
 import { Client } from "pg";
 import { UnknownError } from "@/commons/errors/unknown error";
+import { HttpCodes } from "@/commons/http/http";
 
 export default async function migrations(
   request: NextApiRequest,
@@ -15,7 +16,7 @@ export default async function migrations(
   const allowMethods = ["GET", "POST"].includes(request.method!);
   if (!allowMethods) {
     return response
-      .status(405)
+      .status(HttpCodes.MethodNotAllowed)
       .json(
         new ErrorForHttpMethodNotAllowed(
           `${request.method} method not allowed for migration calls`,
@@ -37,7 +38,7 @@ export default async function migrations(
 
     if (request.method === "GET") {
       const pendingMigrations = await runner(defaultMigrationOptions);
-      return response.status(200).json(pendingMigrations);
+      return response.status(HttpCodes.OK).json(pendingMigrations);
     }
 
     const migratedMigrations = await runner({
@@ -46,13 +47,13 @@ export default async function migrations(
     });
 
     if (migratedMigrations.length > 0) {
-      return response.status(201).json(migratedMigrations);
+      return response.status(HttpCodes.Created).json(migratedMigrations);
     }
 
-    return response.status(200).json(migratedMigrations);
+    return response.status(HttpCodes.OK).json(migratedMigrations);
   } catch (error) {
     return response
-      .status(500)
+      .status(HttpCodes.InternalServerError)
       .json(new UnknownError(`Unknown error in migrations flow: ${error}`));
   } finally {
     await databaseClient!.end();
