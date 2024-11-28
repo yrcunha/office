@@ -19,8 +19,8 @@
     "wait-for-postgres": "node __infrastructure__/provisioning/development/wait-for-postgres.cjs",
     "test": "npm run services:up && concurrently --n next,jest --hide next --k --success command-jest \"next dev\" \"jest --runInBand\"",
     "test:watch": "jest --watchAll --runInBand",
-    "lint:check": "prettier --check .",
-    "lint:fix": "prettier --write ."
+    "lint:prettier:check": "prettier --check .",
+    "lint:prettier:fix": "prettier --write ."
   },
   "engines": {
     "node": "20.x.x"
