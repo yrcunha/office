@@ -5,8 +5,6 @@ on: pull_request
 jobs:
   jest:
     name: Jest
-    uses: "./.github/workflows/setup.yaml"
-    with:
-      node-version: 'lts/iron'
     steps:
+      - uses: "./.github/workflows/setup.yaml"
       - run: npm test
