@@ -6,11 +6,15 @@ jobs:
   prettier:
     name: Prettier
     uses: "./.github/workflows/setup.yaml"
+    with:
+      node-version: 'lts/iron'
     steps:
       - run: npm run lint:prettier:check
 
   eslint:
     name: Eslint
     uses: "./.github/workflows/setup.yaml"
+    with:
+      node-version: 'lts/iron'
     steps:
       - run: npm run lint:eslint:check

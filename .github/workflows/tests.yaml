@@ -6,5 +6,7 @@ jobs:
   jest:
     name: Jest
     uses: "./.github/workflows/setup.yaml"
+    with:
+      node-version: 'lts/iron'
     steps:
       - run: npm test
