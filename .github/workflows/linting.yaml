@@ -5,12 +5,12 @@ on: pull_request
 jobs:
   prettier:
     name: Prettier
-    uses: setup.yml
+    uses: ".github/workflows/setup.yml"
     steps:
       - run: npm run lint:prettier:check
 
   eslint:
     name: Eslint
-    uses: setup.yml
+    uses: ".github/workflows/setup.yml"
     steps:
       - run: npm run lint:eslint:check
