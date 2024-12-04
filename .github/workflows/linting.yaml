@@ -3,30 +3,8 @@ name: Linting
 on: pull_request
 
 jobs:
-  prettier:
-    name: Prettier
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4.2.2
-      - uses: actions/setup-node@v4.1.0
-        with:
-          node-version: "lts/iron"
-      - run: npm ci
-      - run: npm run lint:prettier:check
-
-  eslint:
-    name: Eslint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4.2.2
-      - uses: actions/setup-node@v4.1.0
-        with:
-          node-version: "lts/iron"
-      - run: npm ci
-      - run: npm run lint:eslint:check
-
-  commitlint:
-    name: Commitlint
+  checkout:
+    name: Checkout
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
@@ -35,5 +13,11 @@ jobs:
       - uses: actions/setup-node@v4.1.0
         with:
           node-version: "lts/iron"
-      - run: npm ci
-      - run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+      - name: NPM CI
+        run: npm ci
+      - name: Prettier
+        run: npm run lint:prettier:check
+      - name: Eslint
+        run: npm run lint:eslint:check
+      - name: Commitlint
+        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
