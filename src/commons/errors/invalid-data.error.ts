@@ -1,6 +1,6 @@
-import { CustomError, ErrorCodes } from "./custom.errors";
+import { CustomError, ErrorCodes } from "@/commons/errors/custom.errors";
 
-export class ErrorForInvalidData extends CustomError {
+export class InvalidDataError extends CustomError {
   constructor(message: string, details: string[]) {
     super(message, ErrorCodes.InvalidData, details);
   }
