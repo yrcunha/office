@@ -10,7 +10,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "npm run services:start:webservice",
+    "dev": "node __infrastructure__/provisioning/development/start-web-service.mjs",
     "pretest": "npm run services:up",
     "test": "concurrently --n next,jest --hide next --k --success command-jest \"next dev\" \"dotenv -e .env.development -- jest --runInBand --verbose\"",
     "posttest": "npm run services:stop",
@@ -19,7 +19,6 @@
     "services:stop": "docker compose -f __infrastructure__/provisioning/development/docker-compose.yaml stop",
     "services:down": "docker compose -f __infrastructure__/provisioning/development/docker-compose.yaml down",
     "services:wait:database": "node __infrastructure__/provisioning/development/wait-for-postgres.mjs",
-    "services:start:webservice": "node __infrastructure__/provisioning/development/start-web-service.mjs",
     "migrates:create": "node-pg-migrate -m src/services/datasource/migrations create",
     "migrates:up": "node-pg-migrate -m src/services/datasource/migrations --envPath .env.development up",
     "lint:prettier:check": "prettier --check .",

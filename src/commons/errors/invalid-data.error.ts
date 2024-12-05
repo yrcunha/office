@@ -1,4 +1,4 @@
-import { CustomError, ErrorCodes } from "./custom-errors";
+import { CustomError, ErrorCodes } from "./custom.errors";
 
 export class ErrorForInvalidData extends CustomError {
   constructor(message: string, details: string[]) {

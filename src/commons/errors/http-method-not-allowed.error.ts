@@ -1,4 +1,4 @@
-import { CustomError, ErrorCodes } from "@/commons/errors/custom-errors";
+import { CustomError, ErrorCodes } from "@/commons/errors/custom.errors";
 
 export class ErrorForHttpMethodNotAllowed extends CustomError {
   constructor(message: string) {
