@@ -2,6 +2,7 @@
 import { exec } from "node:child_process";
 
 function checkPostgres() {
+  process.stdout.write("🔴 Waiting for postgres to accept connections!");
   exec(
     "docker exec development_database pg_isready --host localhost",
     (_, stdout) => {
@@ -10,12 +11,9 @@ function checkPostgres() {
         checkPostgres();
         return;
       }
-      console.log("\n🟢 Postgres is now available to accept connections!\n\n");
+      console.log("\n🟢 Postgres is now available to accept connections!");
     },
   );
 }
 
-(() => {
-  process.stdout.write("🔴 Waiting for postgres to accept connections!");
-  checkPostgres();
-})();
+(() => checkPostgres())();
