@@ -10,13 +10,16 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "npm run services:up && npm run services:wait:database && npm run migrates:up && next dev",
-    "test": "npm run services:up && concurrently --n next,jest --hide next --k --success command-jest \"next dev\" \"dotenv -e .env.development -- jest --runInBand --verbose\"",
+    "dev": "npm run services:start:webservice",
+    "pretest": "npm run services:up",
+    "test": "concurrently --n next,jest --hide next --k --success command-jest \"next dev\" \"dotenv -e .env.development -- jest --runInBand --verbose\"",
+    "posttest": "npm run services:stop",
     "test:watch": "dotenv -e .env.development -- jest --watchAll --runInBand --verbose",
     "services:up": "docker compose -f __infrastructure__/provisioning/development/docker-compose.yaml up -d",
     "services:stop": "docker compose -f __infrastructure__/provisioning/development/docker-compose.yaml stop",
     "services:down": "docker compose -f __infrastructure__/provisioning/development/docker-compose.yaml down",
     "services:wait:database": "node __infrastructure__/provisioning/development/wait-for-postgres.mjs",
+    "services:start:webservice": "node __infrastructure__/provisioning/development/start-web-service.mjs",
     "migrates:create": "node-pg-migrate -m src/services/datasource/migrations create",
     "migrates:up": "node-pg-migrate -m src/services/datasource/migrations --envPath .env.development up",
     "lint:prettier:check": "prettier --check .",
@@ -62,7 +65,8 @@
     "node-pg-migrate": "7.8.0",
     "prettier": "3.4.1",
     "ts-jest": "29.2.5",
-    "typescript": "5.7.2"
+    "typescript": "5.7.2",
+    "wait-on": "8.0.1"
   },
   "jest": {
     "preset": "ts-jest/presets/default-esm",
