@@ -3,9 +3,9 @@ import { runner } from "node-pg-migrate";
 import { join } from "node:path";
 import type { RunnerOption } from "node-pg-migrate/types";
 import { getDatabaseClient } from "@/services/datasource/database";
-import { ErrorForHttpMethodNotAllowed } from "@/commons/errors/error-for-http-method-not-allowed";
+import { HttpMethodNotAllowedError } from "@/commons/errors/http-method-not-allowed.error";
 import { Client } from "pg";
-import { UnknownError } from "@/commons/errors/unknown error";
+import { UnknownError } from "@/commons/errors/unknown.error";
 import { HttpCodes } from "@/commons/http/http";
 
 export default async function migrations(
@@ -17,7 +17,7 @@ export default async function migrations(
     return response
       .status(HttpCodes.MethodNotAllowed)
       .json(
-        new ErrorForHttpMethodNotAllowed(
+        new HttpMethodNotAllowedError(
           `${request.method} method not allowed for migration calls`,
         ),
       );

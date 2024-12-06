@@ -1,5 +1,5 @@
 import retry from "async-retry";
-import { ErrorForServiceUnavailability } from "../src/commons/errors/error-for-service-unavailability";
+import { ServiceUnavailabilityError } from "../src/commons/errors/service-unavailability.error";
 import { query } from "../src/services/datasource/database";
 
 export function waitForAllServices() {
@@ -7,7 +7,7 @@ export function waitForAllServices() {
     async () => {
       const response = await fetch("http://localhost:3000/api/v1/status");
       if (response.ok) return;
-      throw new ErrorForServiceUnavailability(
+      throw new ServiceUnavailabilityError(
         "Services unavailable to start the test battery!",
       );
     },
