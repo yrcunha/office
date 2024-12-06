@@ -1,6 +1,6 @@
 import retry from "async-retry";
-import { ServiceUnavailabilityError } from "../src/commons/errors/service-unavailability.error";
-import { query } from "../src/services/datasource/database";
+import { ServiceUnavailabilityError } from "../src/shared/lib/errors/service-unavailability.error";
+import { query } from "../src/features/services/datasource/database";
 
 export function waitForAllServices() {
   return retry(

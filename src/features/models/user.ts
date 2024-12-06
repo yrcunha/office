@@ -1,5 +1,5 @@
 import { DataValidationForCreateUser, UserProps } from "./props/user.props";
-import { InvalidDataError } from "@/commons/errors/invalid-data.error";
+import { InvalidDataError } from "@/shared/lib/errors/invalid-data.error";
 
 export function createUser(props: UserProps) {
   const parsed = DataValidationForCreateUser.safeParse(props);
