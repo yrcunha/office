@@ -1,9 +1,6 @@
+"use client";
+import { fetchAPI } from "@/shared/lib/http/http";
 import useSWR from "swr";
-
-async function fetchAPI(props: { path: string }) {
-  const response = await fetch(props.path);
-  return await response.json();
-}
 
 function UpdatedAt(props: { updatedAt: string }) {
   return (
@@ -33,7 +30,7 @@ function DatabaseStatus(props: {
   );
 }
 
-export default function Status() {
+export default function Page() {
   const { isLoading, data } = useSWR({ path: "/api/v1/status" }, fetchAPI, {
     refreshInterval: 20000,
   });

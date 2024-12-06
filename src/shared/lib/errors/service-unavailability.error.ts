@@ -1,4 +1,4 @@
-import { CustomError, ErrorCodes } from "@/commons/errors/custom.errors";
+import { CustomError, ErrorCodes } from "@/shared/lib/errors/custom.errors";
 
 export class ServiceUnavailabilityError extends CustomError {
   constructor(message: string) {
