@@ -82,6 +82,9 @@
     "*.{j,t}{s,sx}": [
       "npx prettier --check",
       "next lint --file"
+    ],
+    "*.{json,css,html}": [
+      "npx prettier --check"
     ]
   },
   "config": {
