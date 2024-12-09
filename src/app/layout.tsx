@@ -1,4 +1,6 @@
 import React from "react";
+import Header from "@/shared/components/header/header";
+import "./global.css";
 
 export const metadata = {
   title: "Office",
@@ -11,8 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="pt-BR">
+      <body>
+        <Header />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
