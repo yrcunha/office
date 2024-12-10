@@ -87,7 +87,7 @@
       "npx prettier --check",
       "next lint --file"
     ],
-    "*.{c,m}{js}": [
+    "*.{c,m}js": [
       "npx prettier --check",
       "next lint --file"
     ],
