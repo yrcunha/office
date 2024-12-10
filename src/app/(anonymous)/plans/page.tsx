@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Home() {
+export default function Plans() {
   return (
     <section className="flex flex-col justify-center items-center">
       <header>
