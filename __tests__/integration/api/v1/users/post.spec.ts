@@ -18,7 +18,7 @@ describe("POST /api/v1/users", () => {
               max: 99999999999,
             })
             .toString(),
-          oab: `${faker.number.int({ min: 1000, max: 200000 })}/BA`,
+          professional_code: `${faker.number.int({ min: 1000, max: 200000 })}/BA`,
           email: faker.internet.email(),
           phone: faker.phone.number(),
         }),

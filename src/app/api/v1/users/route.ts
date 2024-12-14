@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       data.social_name,
       data.document,
       Math.random().toString(36).slice(-11),
-      data.oab,
+      data.professional_code,
       data.email,
       data.phone,
     ],
