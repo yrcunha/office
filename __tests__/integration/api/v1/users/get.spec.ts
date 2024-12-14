@@ -1,10 +1,17 @@
-import { BaseUrl, waitForAllServices } from "../../../../orchestrator";
+import {
+  BaseUrl,
+  runningMigrations,
+  waitForAllServices,
+} from "../../../../orchestrator";
 import { HttpCodes } from "../../../../../src/shared/lib/http/http";
 import { query } from "../../../../../src/features/services/datasource/database";
 import { faker } from "@faker-js/faker";
 import { ulid } from "ulid";
 
-beforeAll(async () => await waitForAllServices());
+beforeAll(async () => {
+  await waitForAllServices();
+  await runningMigrations();
+});
 
 describe("GET /api/v1/users/{id}", () => {
   describe("User as a customer", () => {

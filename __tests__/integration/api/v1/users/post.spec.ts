@@ -1,8 +1,15 @@
-import { BaseUrl, waitForAllServices } from "../../../../orchestrator";
+import {
+  BaseUrl,
+  runningMigrations,
+  waitForAllServices,
+} from "../../../../orchestrator";
 import { HttpCodes } from "../../../../../src/shared/lib/http/http";
 import { faker } from "@faker-js/faker";
 
-beforeAll(async () => await waitForAllServices());
+beforeAll(async () => {
+  await waitForAllServices();
+  await runningMigrations();
+});
 
 describe("POST /api/v1/users", () => {
   describe("Anonymous user", () => {
