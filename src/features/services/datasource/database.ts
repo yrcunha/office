@@ -5,8 +5,6 @@ export async function query(command: string, params: string[] = []) {
   try {
     client = await getDatabaseClient();
     return await client.query(command, params);
-  } catch (error) {
-    console.error(`Erro na requisição do banco de dados:`, error);
   } finally {
     await client!.end();
   }

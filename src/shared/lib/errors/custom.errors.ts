@@ -1,7 +1,8 @@
 export enum ErrorCodes {
   Unknown = "Unknown",
-  InvalidData = "InvalidData",
+  InvalidPayload = "InvalidPayload",
   ResourceAlreadyExists = "ResourceAlreadyExists",
+  ResourceNotFound = "ResourceNotFound",
   ServiceUnavailable = "ServiceUnavailable",
   MethodNotAllow = "MethodNotAllow",
 }
