@@ -3,22 +3,34 @@
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.createSequence("user_id_seq", {
-    type: "bigint",
-    minvalue: 1,
-    start: 1,
-    increment: 1,
-    cache: 1,
-    ifNotExists: true,
-  });
-
   pgm.createTable(
     "users",
     {
       id: {
-        type: "bigint",
+        type: "char(26)",
         primaryKey: true,
-        default: pgm.func("nextval('user_id_seq'::regclass)"),
+      },
+      name: {
+        type: "text",
+        notNull: true,
+      },
+      social_name: {
+        type: "text",
+        notNull: false,
+      },
+      document: {
+        type: "varchar(11)",
+        notNull: true,
+        unique: true,
+      },
+      password: {
+        type: "text",
+        notNull: false,
+      },
+      professional_code: {
+        type: "text",
+        notNull: false,
+        unique: true,
       },
       email: {
         type: "text",
@@ -30,9 +42,12 @@ exports.up = (pgm) => {
         notNull: true,
         unique: true,
       },
+      status: {
+        type: "boolean",
+        default: true,
+      },
       created_at: {
         type: "timestamptz",
-        notNull: true,
         default: pgm.func("now()"),
       },
     },
