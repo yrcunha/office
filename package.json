@@ -10,6 +10,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "build": "next build",
     "dev": "node __infrastructure__/provisioning/development/start-web-service.mjs",
     "pretest": "npm run services:up",
     "test": "concurrently --n next,jest --hide next --k --success command-jest \"next dev\" \"dotenv -e .env.development -- jest --runInBand --verbose\"",

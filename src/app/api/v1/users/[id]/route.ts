@@ -8,9 +8,10 @@ export async function GET(
   {
     params,
   }: {
-    params: { id: string };
+    params: Promise<{ id: string }>;
   },
 ) {
+  const { id } = await params;
   const result = await query(
     `
       SELECT id,
@@ -24,7 +25,7 @@ export async function GET(
       FROM users
       WHERE id = $1
     `,
-    [params.id],
+    [id],
   );
   if (result?.rows.length) {
     return NextResponse.json(result.rows[0], {
